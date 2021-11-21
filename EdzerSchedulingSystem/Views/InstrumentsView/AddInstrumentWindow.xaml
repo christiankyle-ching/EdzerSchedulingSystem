@@ -1,0 +1,85 @@
+﻿<Window x:Class="EdzerSchedulingSystem.AddInstrumentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EdzerSchedulingSystem"
+        mc:Ignorable="d" FontFamily="{StaticResource PrimaryFont}"
+        Title="Add Instrument Window" Height="300" Width="600" MinHeight="300" MinWidth="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Border Margin="10" Background="{StaticResource BackgroundColor}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Instrument Model-->
+                    <TextBlock Text="Instrument Model"
+                                Grid.Column="0" Grid.Row="0"
+                                HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Margin="5" FontFamily="{StaticResource PrimaryFont}"/>
+
+                    <TextBox x:Name="txtInstrumentModel"
+                                Grid.Column="1" Grid.Row="0"
+                                Margin="5" Padding="2" Style="{StaticResource WindowsTextBoxTemplate}"/>
+
+                    <!--Type-->
+                    <TextBlock Text="Instrument Type"
+                                Grid.Column="0" Grid.Row="1"
+                                HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Margin="5" FontFamily="{StaticResource PrimaryFont}"/>
+
+                    
+                    <ComboBox x:Name="cbType" SelectionChanged="cbType_SelectionChanged" 
+                              Grid.Column="1" Grid.Row="1" Margin="5 10" Padding="2" Height="25" />
+
+                    
+                    <!--Price Per Hour-->
+                    <TextBlock Text="Price Per Hour (PHP)"
+                                Grid.Column="0" Grid.Row="2"
+                                HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Margin="5" FontFamily="{StaticResource PrimaryFont}"/>
+
+                    <TextBox x:Name="txtPricePerHour" MaxLength="10" IsReadOnly="True"
+                                Grid.Column="1" Grid.Row="2" PreviewTextInput="validateNumberInput"
+                                Margin="5" Padding="2" Style="{StaticResource WindowsTextBoxTemplate}"/>
+
+                    <!--Description-->
+                    <TextBlock Text="Description"
+                                Grid.Column="0" Grid.Row="3"
+                                HorizontalAlignment="Right" VerticalAlignment="Center"
+                                Margin="5" FontFamily="{StaticResource PrimaryFont}"/>
+
+                    <TextBox x:Name="txtDescription"
+                                Grid.Column="1" Grid.Row="3"
+                                Margin="5" Padding="2" Style="{StaticResource WindowsTextBoxTemplate}"/>
+
+
+
+
+
+                </Grid>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button x:Name="btnCancel" Content="Cancel" Style="{StaticResource SecondaryButtonStyle}" Margin="5 0" Click="btnCancel_Click"/>
+                <Button x:Name="btnAdd" Content="Add" Style="{StaticResource PrimaryButtonStyle}" Margin="5 0" Click="btnAdd_Click"/>
+            </StackPanel>
+        </Grid>
+        
+    </Border>
+</Window>

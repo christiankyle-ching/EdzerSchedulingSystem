@@ -1,0 +1,242 @@
+﻿<UserControl x:Class="EdzerSchedulingSystem.Views.Dashboard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EdzerSchedulingSystem.Views"
+             mc:Ignorable="d" Style="{StaticResource UserControlTemplate}"
+             d:DesignHeight="570" d:DesignWidth="1000">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Statistics-->
+        <Border CornerRadius="10" Margin="5" BorderBrush="{StaticResource SecondaryTextColor}"
+                Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Schedules This Month-->
+                <Border CornerRadius="5" Margin="15 5" BorderThickness="1" BorderBrush="{StaticResource LightBlue}" Grid.Column="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Top Row-->
+                        <DockPanel Grid.Row="0" Background="{StaticResource LightBlue}">
+                            <Image HorizontalAlignment="Left" Margin="5"/>
+
+                            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
+                                <TextBlock x:Name="txtScheduleThisMonth" Foreground="{StaticResource PrimaryTextColor}" FontSize="56" HorizontalAlignment="Right"/>
+                                <TextBlock Text="Schedule/s This Month" Foreground="{StaticResource PrimaryTextColor}" FontWeight="Bold" FontSize="14"/>
+                            </StackPanel>
+                        </DockPanel>
+
+                        <!--Bottom Row-->
+                        <DockPanel Grid.Row="1" VerticalAlignment="Center" Margin="10">
+                            <TextBlock Text="View Details" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource LightBlue}"/>
+
+                            <Button x:Name="btnScheduleThisMonth" HorizontalAlignment="Right" Style="{StaticResource WhiteButton}"
+                                    Content="{StaticResource imgRightBlue}" Click="btnScheduleThisMonth_Click"/>
+                        </DockPanel>
+
+                    </Grid>
+                </Border>
+
+                <!--Schedules Next Month-->
+                <Border CornerRadius="5" Margin="15 5" BorderThickness="1" BorderBrush="{StaticResource Orange}" Grid.Column="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Top Row-->
+                        <DockPanel Grid.Row="0" Background="{StaticResource Orange}">
+                            <Image HorizontalAlignment="Left" Margin="5"/>
+
+                            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
+                                <TextBlock x:Name="txtScheduleNextMonth" Foreground="{StaticResource PrimaryTextColor}" FontSize="56" HorizontalAlignment="Right"/>
+                                <TextBlock Text="Schedule/s Next Month" Foreground="{StaticResource PrimaryTextColor}" FontWeight="Bold" FontSize="14"/>
+                            </StackPanel>
+                        </DockPanel>
+
+                        <!--Bottom Row-->
+                        <DockPanel Grid.Row="1" VerticalAlignment="Center" Margin="10">
+                            <TextBlock Text="View Details" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource Orange}"/>
+
+                            <Button x:Name="btnScheduleNextMonth" HorizontalAlignment="Right" Style="{StaticResource WhiteButton}"
+                                    Content="{StaticResource imgRightOrange}" Click="btnScheduleNextMonth_Click"/>
+                        </DockPanel>
+
+                    </Grid>
+                </Border>
+
+                <!--Number of Instruments-->
+                <Border CornerRadius="5" Margin="15 5" BorderThickness="1" BorderBrush="{StaticResource Green}" Grid.Column="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Top Row-->
+                        <DockPanel Grid.Row="0" Background="{StaticResource Green}">
+                            <Image HorizontalAlignment="Left" Margin="5"/>
+
+                            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5">
+                                <TextBlock x:Name="txtInstrumentCount" Foreground="{StaticResource PrimaryTextColor}" FontSize="56" HorizontalAlignment="Right"/>
+                                <TextBlock Text="Instrument/s" Foreground="{StaticResource PrimaryTextColor}" FontWeight="Bold" FontSize="14"/>
+                            </StackPanel>
+                        </DockPanel>
+
+                        <!--Bottom Row-->
+                        <DockPanel Grid.Row="1" VerticalAlignment="Center" Margin="10">
+                            <TextBlock Text="View Details" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Foreground="{StaticResource Green}"/>
+
+                            <Button x:Name="btnInstrumentCount" HorizontalAlignment="Right" Style="{StaticResource WhiteButton}"
+                                    Content="{StaticResource imgRightGreen}" Click="btnInstrumentCount_Click"/>
+                        </DockPanel>
+
+                    </Grid>
+                </Border>
+
+
+
+            </Grid>
+
+        </Border>
+
+        <!--Upcoming Schedules-->
+        <Border CornerRadius="10" Margin="5" BorderBrush="{StaticResource SecondaryTextColor}"
+                Grid.Column="0" Grid.Row="1">
+
+            
+            <DockPanel Margin="10">
+
+                <!--Title Bar-->
+                <StackPanel DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal" Margin="10 0">
+                        <Image Style="{StaticResource imgSchedulesDark}" Height="25"/>
+                        <TextBlock Text="Upcoming Schedules" FontSize="22" Margin="10 0"/>
+                    </StackPanel>
+                    <Separator BorderBrush="{StaticResource PrimaryTextColor}" Margin="0 10"/>
+                </StackPanel>
+
+                <DataGrid x:Name="tbl_NextSchedules" DockPanel.Dock="Bottom" CanUserAddRows="False" SelectionMode="Single" RowHeight="40"
+                          CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True" AutoGenerateColumns="False"
+                          MouseDoubleClick="tbl_NextSchedules_MouseDoubleClick"  MouseUp="tbl_NextSchedules_MouseUp" LoadingRow="tbl_NextSchedules_LoadingRow">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn     Header="Band"  Width="2*"   Binding="{Binding bandName}"/>
+                        <DataGridTextColumn     Header="Representative"  Width="2*"   Binding="{Binding representativeName}"/>
+                        <DataGridTextColumn     Header="Date"           Width="*"   Binding="{Binding scheduleDate}"/>
+                        <DataGridTextColumn     Header="Time"           Width="*"   Binding="{Binding startTime}"/>
+                    </DataGrid.Columns>
+
+                    
+                </DataGrid>
+
+            </DockPanel>
+
+        </Border>
+
+        <!--Lower Right-->
+        <Border CornerRadius="10" Margin="5" BorderBrush="{StaticResource SecondaryTextColor}"
+                Grid.Column="1" Grid.Row="1">
+
+            <!--Summary and Buttons-->
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                
+                <!--Summary-->
+                <DockPanel Margin="10" Grid.Row="0" LastChildFill="True">
+                    
+                    <!--Title Bar-->
+                    <StackPanel DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <Image Style="{StaticResource imgSummaryDark}" Height="25"/>
+                            <TextBlock x:Name="txtSummary" Text="Summary ()" FontSize="22" Margin="10 0"/>
+                        </StackPanel>
+                        <Separator BorderBrush="{StaticResource PrimaryTextColor}" Margin="0 10"/>
+                    </StackPanel>
+                
+                    <!--INSERT SUMMARY HERE-->
+                    <ScrollViewer Margin="10 0">
+                        <StackPanel>
+                            <!--Total Revenue-->
+                            <TextBlock x:Name="txtMonth" Text="Total Revenue this Month" FontSize="16"/>
+                            <TextBlock x:Name="txtRevenue" HorizontalAlignment="Right" FontSize="24"/>
+
+                            <!--Number of Bands Rented-->
+                            <TextBlock Text="Number of Bands Rented" FontSize="16"/>
+                            <TextBlock x:Name="txtBands" HorizontalAlignment="Right" FontSize="24"/>
+
+                            <!--Number of Instruments Rented-->
+                            <TextBlock Text="Instrument Rentals" FontSize="16"/>
+                            <TextBlock x:Name="txtInstruments" HorizontalAlignment="Right" FontSize="24"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </DockPanel>
+                
+                <!--Buttons-->
+                <Grid VerticalAlignment="Bottom" Height="50" Grid.Row="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!--Add Schedule Button-->
+                    <Button x:Name="btnAddSchedule" Style="{StaticResource PrimaryButtonStyle}" Grid.Column="0" ToolTip="Book New Schedule"
+                           Margin="5" Height="40" MinWidth="0" VerticalAlignment="Center" Click="btnAddSchedule_Click">
+                        <Button.Content>
+                            <Image Style="{StaticResource imgAddSchedule}" Height="35" Width="35"/>
+                        </Button.Content>
+                    </Button>
+
+                    <!--Add Instrument Button-->
+                    <Button x:Name="btnAddInstrument" Style="{StaticResource PrimaryButtonStyle}" Grid.Column="1"  ToolTip="Add New Instrument"
+                            Margin="5" Height="40" MinWidth="0" VerticalAlignment="Center" Click="btnAddInstrument_Click">
+                        <Button.Content>
+                            <Image Style="{StaticResource imgAddInstrument}"  Width="35" Height="35"/>
+                            </Button.Content>
+                    </Button>
+
+                    <!--Generate Report Button-->
+                    <Button x:Name="btn" Style="{StaticResource PrimaryButtonStyle}" Grid.Column="2"  ToolTip="Generate Report"
+                            Margin="5" Height="40" MinWidth="0" VerticalAlignment="Center" Click="btn_Click" >
+                        <Button.Content>
+                            <Image Style="{StaticResource imgGenerateReport}" Width="35" Height="35"/>
+                        </Button.Content>
+                    </Button>
+
+                </Grid>
+                
+            </Grid>
+
+        </Border>
+
+
+    </Grid>
+
+</UserControl>

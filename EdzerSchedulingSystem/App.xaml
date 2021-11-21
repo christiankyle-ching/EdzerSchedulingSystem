@@ -1,0 +1,394 @@
+﻿<Application x:Class="EdzerSchedulingSystem.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:EdzerSchedulingSystem"
+             StartupUri="LoginWindow.xaml">
+    <Application.Resources>
+
+        <!--INSTRUCTIONS
+        To reference specific object (e.g. image, color, etc.), type into value ="{StaticResource key_name}""
+        key_name = x:key of each item
+        To override specific properties (e.g. height, width, etc.), do so by typing the peoperty explicitly with
+        its new value while coding. Do not change items here.-->
+        <ResourceDictionary>
+            
+            <!--Images-->
+            <Image x:Key="imgMaximize"  Source="/Assets/img/icons/imgMaximize.png"/>
+            <Image x:Key="imgRestore"   Source="/Assets/img/icons/imgRestore.png"/>
+            <Image x:Key="imgMinimize"  Source="/Assets/img/icons/imgMinimize.png"/>
+            <Image x:Key="imgClose"     Source="/Assets/img/icons/imgClose.png"/>
+            <Image x:Key="imgAccounts"  Source="/Assets/img/icons/imgAccounts.png"/>
+            <Image x:Key="imgLogo"      Source="/Assets/img/logo.png"/>
+            <Image x:Key="imgLeft"      Source="/Assets/img/icons/imgLeft.png"/>
+            <Image x:Key="imgRight"     Source="/Assets/img/icons/imgRight.png"/>
+            <Image x:Key="imgLogov2"    Source="/Assets/img/logov2.png"/>
+            <Image x:Key="imgRightBlue"     Source="/Assets/img/icons/imgRightBlue.png"/>
+            <Image x:Key="imgRightOrange"   Source="/Assets/img/icons/imgRightOrange.png"/>
+            <Image x:Key="imgRightGreen"    Source="/Assets/img/icons/imgRightGreen.png"/>
+
+            <FontFamily x:Key="PrimaryFont">Century Gothic</FontFamily>
+            
+            <!--Logo-->
+            <Style x:Key="Logo" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/logo.png"/>
+                <Setter Property="Height" Value="200"/>
+                <Setter Property="Width" Value="200"/>
+            </Style>
+
+            <Style x:Key="Logov2" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/logov2.png"/>
+                <Setter Property="Height" Value="200"/>
+                <Setter Property="Width" Value="200"/>
+            </Style>
+
+            <!--Search Icon-->
+            <Style x:Key="imgDashboard" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgDashboard.png"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Width" Value="32"/>
+            </Style>
+            
+            <!--Schedules Icon-->
+            <Style x:Key="imgSchedules" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgSchedules.png"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Width" Value="32"/>
+            </Style>
+
+            <!--Dark Schedule Icon-->
+            <Style x:Key="imgSchedulesDark" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgSchedulesDark.png"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Width" Value="32"/>
+            </Style>
+
+            <!--Instruments Icon-->
+            <Style x:Key="imgInstruments" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgInstruments.png"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Width" Value="32"/>
+            </Style>
+
+            <!--Search Icon-->
+            <Style x:Key="imgSearch" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgSearch.png"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Width" Value="32"/>
+            </Style>
+            
+            <!--Add New Schedule Icon-->
+            <Style x:Key="imgAddSchedule" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgAddSchedule.png"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+            </Style>
+
+            <!--Add New Instrument Icon-->
+            <Style x:Key="imgAddInstrument" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgAddInstrument.png"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+            </Style>
+
+            <!--Generate Report Icon-->
+            <Style x:Key="imgGenerateReport" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgGenerateReport.png"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+            </Style>
+
+            <!--Edit Schedule Icon-->
+            <Style x:Key="imgEdit" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgEdit.png"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+            </Style>
+
+            <!--Delete Schedule Icon-->
+            <Style x:Key="imgDelete" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgDelete.png"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+            </Style>
+
+            <!--Search Dark Icon-->
+            <Style x:Key="imgSearchDark" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgSearchDark.png"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+            </Style>
+
+            <!--Summary Dark Icon-->
+            <Style x:Key="imgSummaryDark" TargetType="Image">
+                <Setter Property="Source" Value="/Assets/img/icons/imgSummaryDark.png"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+            </Style>
+
+            <!--Colors-->
+            <SolidColorBrush x:Key="PrimaryColor" Color="#F44336"/>
+            <SolidColorBrush x:Key="LightPrimaryColor" Color="#FFCDD2"/>
+            <SolidColorBrush x:Key="DarkPrimaryColor" Color="#D32F2F"/>
+            <SolidColorBrush x:Key="BackgroundColor" Color="WhiteSmoke"/>
+            <SolidColorBrush x:Key="PrimaryTextColor" Color="WhiteSmoke"/>
+            <SolidColorBrush x:Key="SecondaryTextColor" Color="#212121"/>
+            <SolidColorBrush x:Key="DarkAccentColor" Color="#FF435863"/>
+            <SolidColorBrush x:Key="SecondaryHighlightColor" Color="#C46868"/>
+            <SolidColorBrush x:Key="ErrorColor" Color="#DC3545"/>
+            <SolidColorBrush x:Key="LightBlue" Color="#3498DB"/>
+            <SolidColorBrush x:Key="Orange" Color="#E67E22"/>
+            <SolidColorBrush x:Key="Green" Color="#2ECC71"/>
+            
+            <LinearGradientBrush x:Key="AccentColor" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#102546" Offset="0"/>
+                <GradientStop Color="#03587d" Offset="0.5"/>
+                <GradientStop Color="#009bbf" Offset="1.0"/>
+            </LinearGradientBrush>
+
+            <LinearGradientBrush x:Key="LightAccentColor" StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#091e34" Offset="0"/>
+                <GradientStop Color="#03090f" Offset="1.0"/>
+            </LinearGradientBrush>
+
+            <!--TextBox Template-->
+            <Style x:Key="LogInTextBoxTemplate" TargetType="TextBox">
+                <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Padding" Value="3"/>
+                <Setter Property="Background" Value="{x:Null}"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
+            </Style>
+            
+            <Style x:Key="WindowsTextBoxTemplate" TargetType="TextBox">
+                <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                <Setter Property="BorderBrush" Value="{StaticResource SecondaryTextColor}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Padding" Value="3"/>
+                <Setter Property="Background" Value="{x:Null}"/>
+                <Setter Property="Foreground" Value="{StaticResource SecondaryTextColor}"/>
+            </Style>
+
+            <Style x:Key="DatePickerTemplate" TargetType="DatePicker">
+                <Setter Property="Foreground" Value="#FF333333"/>
+                <Setter Property="IsTodayHighlighted" Value="True"/>
+                <Setter Property="SelectedDateFormat" Value="Short"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Padding" Value="2"/>
+                <Setter Property="BorderThickness" Value="0 0 0 0"/>
+                <Style.Resources>
+                    <Style TargetType="DatePickerTextBox">
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox x:Name="textBoxDatePicker" Style="{StaticResource WindowsTextBoxTemplate}"
+                                             Text="{Binding Path=SelectedDate, StringFormat={}{0:MM/dd/yyyy}, RelativeSource ={RelativeSource AncestorType={x:Type DatePicker}}}"
+                                             IsReadOnly="True" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    
+                </Style.Resources>
+            </Style>
+
+           
+            <Style x:Key="PasswordBoxTemplate" TargetType="PasswordBox">
+                <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Padding" Value="3"/>
+                <Setter Property="Background" Value="{x:Null}"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
+            </Style>
+
+
+            <!--Primary Button Template-->
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Padding" Value="2"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="MinWidth" Value="100"/>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource DarkPrimaryColor}"/>
+                    </Trigger>
+
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.5"/>
+                    </Trigger>
+                </Style.Triggers>
+
+            </Style>
+
+            <!--Secondary Button Template-->
+            <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="{x:Null}"/>
+                <Setter Property="Foreground" Value="{StaticResource SecondaryTextColor}"/>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderBrush="{StaticResource PrimaryColor}" BorderThickness="1" CornerRadius="5">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Padding" Value="2"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="MinWidth" Value="100"/>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource SecondaryHighlightColor}"/>
+                    </Trigger>
+
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.5"/>
+                    </Trigger>
+                </Style.Triggers>
+
+            </Style>
+
+            <!--Menu Button Template-->
+            <Style x:Key="MenuButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource LightAccentColor}"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
+                
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="FontFamily" Value="Century Gothic"/>
+                <Setter Property="Padding" Value="2"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Height" Value="60"/>
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource DarkAccentColor}"/>
+                    </Trigger>
+                </Style.Triggers>
+                
+            </Style>
+
+            <!--Blue/White Button Template-->
+            <Style x:Key="WhiteButton" TargetType="Button">
+                <Setter Property="Background" Value="{x:Null}"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <Setter Property="RenderTransformOrigin" Value="0.5 0.5"/>
+                
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="False">
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.3"/>
+                    </Trigger>
+                </Style.Triggers>
+
+            </Style>
+
+            <!--Window Template-->
+            <Style x:Key="NoBorderWindow" TargetType="Window">
+                <Setter Property="WindowStyle" Value="None"/>
+                <Setter Property="ResizeMode" Value="NoResize"/>
+                <Setter Property="AllowsTransparency" Value="True"/>
+                <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
+            </Style>
+
+            <!--Title TextBox Template-->
+            <Style x:Key="TitleText" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="40"/>
+                <Setter Property="FontFamily" Value="{StaticResource PrimaryFont}"/>
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
+            </Style>
+
+            <!--User Control Template-->
+            <Style x:Key="UserControlTemplate" TargetType="UserControl">
+                <Setter Property="FontFamily" Value="{StaticResource PrimaryFont}"/>
+                <Setter Property="Background" Value="{StaticResource BackgroundColor}"/>
+            </Style>
+            
+            <!--Table Header Style-->
+            <Style TargetType="DataGridColumnHeader">
+                <Setter Property="FontSize" Value="14"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True"/>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="DataGrid">
+                <Setter Property="CanUserAddRows" Value="False"/>
+                <Setter Property="SelectionMode" Value="Single"/>
+                <Setter Property="CanUserReorderColumns" Value="False"/>
+                <Setter Property="CanUserSortColumns" Value="False"/>
+                <Setter Property="IsReadOnly" Value="True"/>
+                <Setter Property="AutoGenerateColumns" Value="False"/>
+            </Style>
+
+            <!--Global DatePicker Modifier-->
+            <Style TargetType="{x:Type DatePickerTextBox}">
+
+                <!--Formatting-->
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <TextBox x:Name="PART_TextBox" IsReadOnly="True"
+                                     Text="{Binding Path=SelectedDate, StringFormat='MMM dd yyyy', 
+                                     RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

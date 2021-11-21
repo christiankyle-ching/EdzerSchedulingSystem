@@ -1,0 +1,305 @@
+﻿<UserControl x:Class="EdzerSchedulingSystem.Views.SchedulesView.SchedulesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EdzerSchedulingSystem.Views.SchedulesView"
+             mc:Ignorable="d" 
+             Style="{StaticResource UserControlTemplate}" d:DesignHeight="570" d:DesignWidth="1000">
+    <Border Padding="10" Background="{StaticResource BackgroundColor}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <!--COLUMN 1 - ListBox of Schedules and Add and Search feature-->
+            <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height ="40"/>
+                    <RowDefinition Height ="*"/>
+                    <RowDefinition Height ="40"/>
+                </Grid.RowDefinitions>
+
+                <!--Search Bar-->
+                <Border CornerRadius="5" BorderThickness="1" BorderBrush="{StaticResource SecondaryTextColor}" Height="30"
+                        Margin="5" VerticalAlignment="Top" Grid.Row="0">
+                    <DockPanel>
+                        <Image Style="{StaticResource imgSearchDark}" Margin="5"/>
+
+                        <TextBox x:Name="txtSearch" Background="{x:Null}" BorderThickness="0" FontSize="14" VerticalAlignment="Center" TextChanged="txtSearch_TextChanged"/>
+                    </DockPanel>
+                </Border>
+
+                <!--List View-->
+                <ListBox x:Name="listSchedules" Grid.Row="1" Margin="5" FontFamily="{StaticResource PrimaryFont}" MouseUp="listSchedules_MouseUp" SelectionChanged="listSchedules_SelectionChanged">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Text="{Binding bandName}" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" Margin="0 2"/>
+                                <TextBlock Grid.Row="1" Text="{Binding startTime}" HorizontalAlignment="Left"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="Padding" Value="10"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                </ListBox>
+
+                <StackPanel Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+                    <Button x:Name="btnAddSchedule" Content="Add Schedule" Style="{StaticResource  PrimaryButtonStyle}" Width="120" Click="btnAddSchedule_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <!--BookingDetail and Schedule List -->
+
+            <!--COLUMN 2 -->
+            <Grid Margin="5" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="txtBandName" FontFamily="{StaticResource PrimaryFont}" FontSize="16" FontWeight="Bold" Margin="0 0 15 0" VerticalAlignment="Bottom"/>
+                    <TextBlock x:Name="txtRepresentative" FontFamily="{StaticResource PrimaryFont}" FontSize="14" Margin="0 0 15 0" VerticalAlignment="Bottom"/>
+                    <TextBlock x:Name="txtScheduleID" FontFamily="{StaticResource PrimaryFont}" FontSize="14" VerticalAlignment="Bottom"/>
+                </StackPanel>
+
+                <!--Has Penalty-->
+                <TextBlock x:Name="txtHasPenalty" Text="This band has penalty." Visibility="Hidden" 
+                           FontFamily="{StaticResource PrimaryFont}" FontSize="12" FontWeight="Bold" FontStyle="Italic" Foreground="{StaticResource ErrorColor}" 
+                           HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+
+                <!--Booking Details-->
+                <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="8" Grid.Row="1" Margin="5">
+                    <ScrollViewer>
+                        <DockPanel>
+                            <Label Content="Booking Details" FontWeight="Bold" FontFamily="{StaticResource PrimaryFont}" DockPanel.Dock="Top"/>
+                            <Separator Height="5"/>
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width ="*"/>
+                                    <ColumnDefinition Width ="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!--Band Penalty-->
+                                <Grid Grid.Row="0" Grid.Column="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Band has penalty?" Grid.Column="0"  VerticalAlignment="Center" FontFamily="{StaticResource PrimaryFont}"/>
+                                    <CheckBox x:Name="chkPenalty" IsEnabled="False" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+                                </Grid>
+
+                                <!--Status-->
+                                <Grid Grid.Row="0" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Status" Grid.Column="0"  VerticalAlignment="Center" FontFamily="{StaticResource PrimaryFont}"/>
+                                    <ComboBox x:Name="cbStatus" IsEnabled="False" Grid.Column="1" Margin="5"/>
+                                </Grid>
+
+
+                                <!--Recording Type-->
+                                <TextBlock Text="Recording Type" Grid.Row="1" Grid.Column="0"  VerticalAlignment="Center" FontFamily="{StaticResource PrimaryFont}"/>
+                                <ComboBox x:Name="cbScheduleType" IsEnabled="False" Grid.Row="1" Grid.Column="1" Margin="5" SelectionChanged="cbScheduleType_SelectionChanged"/>
+
+
+                                <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--Date-->
+                                    <TextBlock Text="Date" Grid.Column="0"  VerticalAlignment="Center" FontFamily="{StaticResource PrimaryFont}"/>
+                                    <DatePicker x:Name="datePicker" Grid.Column="1" VerticalAlignment="Bottom" Margin="5" IsEnabled="False"/>
+
+                                </Grid>
+
+                                <!--Start Time-->
+                                <Grid Grid.Row="3" Grid.Column="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Start Time" Grid.Column="0" VerticalAlignment="Center"/>
+
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+
+                                        <TextBox x:Name="txtHour" Width="40" Margin="5" Padding="2" IsEnabled="False"  PreviewTextInput="validateNumberInput" LostFocus="txtHour_LostFocus" MaxLength="2"/>
+                                        <TextBlock Text=":" Margin="5" VerticalAlignment="Center" IsEnabled="False"/>
+                                        <TextBox x:Name="txtMinute" Margin="5" Width="40" Padding="2" IsEnabled="False"  PreviewTextInput="validateNumberInput" LostFocus="txtMinute_LostFocus" MaxLength="2"/>
+
+                                        <ComboBox x:Name="cbAMPM" Margin="5" Width="40" Padding="2" IsEnabled="False"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <!--Duration-->
+                                <Grid Grid.Row="3" Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="Duration (Hours)" VerticalAlignment="Center" Grid.Column="0" FontFamily="{StaticResource PrimaryFont}" />
+                                    <TextBox x:Name="txtDuration" IsEnabled="False" Margin="5" Grid.Column="1" Style="{StaticResource WindowsTextBoxTemplate}" PreviewTextInput="validateNumberInput" LostFocus="txtDuration_LostFocus" MaxLength="2"/>
+                                </Grid>
+
+                                <!--Instruments Rented-->
+                                <DataGrid x:Name="tblInstrumentsRented" Grid.Row="4" Grid.ColumnSpan="2" Margin="5" IsEnabled="False" IsReadOnly="True" MinHeight="100" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Instrument Type" Width="auto" Binding="{Binding instrumentType}"/>
+                                        <DataGridTextColumn Header="Available Quantity" Width="auto"        Binding="{Binding totalQuantity}"/>
+                                        <DataGridTextColumn Header="Quantity Rented" Width="auto"  Binding="{Binding rentedQuantity}"/>
+                                        <DataGridTextColumn Header="Price Per Hour" Width="auto"  Binding="{Binding pricePerHour}"/>
+                                        <DataGridTextColumn Header="Total Price" Width="auto"  Binding="{Binding totalPrice}"/>
+                                        <DataGridTemplateColumn Width="30">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button x:Name="btnRemoveInstrument" Click="btnRemoveInstrument_Click" Content="-" Margin="2"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Width="30">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button x:Name="btnAddInstrument" Click="btnAddInstrument_Click" Content="+" Margin="2"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                    <DataGrid.ColumnHeaderStyle>
+                                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="FontSize"  Value="12" />
+                                        </Style>
+                                    </DataGrid.ColumnHeaderStyle>
+                                </DataGrid>
+
+                            </Grid>
+                        </DockPanel>
+                    </ScrollViewer>
+                </Border>
+
+                <!--Final Resulting Transactions Window-->
+                <Border BorderThickness="1" BorderBrush="Gray"  CornerRadius="8" Grid.Row="2" Margin="5">
+                    <StackPanel  Margin="5,5,5,0" Grid.Row="1">
+                        <Label Content="Quote" FontWeight="Bold" FontFamily="{StaticResource PrimaryFont}"/>
+                        <Separator Height="5"/>
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width ="*"/>
+                                <ColumnDefinition Width ="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Edzer Studio" Grid.Row="0" FontFamily="{StaticResource PrimaryFont}"/>
+                            <Label Content="Studio Rate" Grid.Row="1" FontFamily="{StaticResource PrimaryFont}" VerticalAlignment="Bottom"/>
+                            <TextBox x:Name="txtStudioRate" IsReadOnly="True" Grid.Row="1" Grid.Column="1" Margin="5" Style="{StaticResource WindowsTextBoxTemplate}"/>
+                            <Label Content="Additional Fees" Grid.Row="2"  VerticalAlignment="Bottom" FontFamily="{StaticResource PrimaryFont}"/>
+                            <TextBox x:Name="txtAdditionalFees" IsReadOnly="True" Grid.Row="2" Grid.Column="1" Margin="5" Style="{StaticResource WindowsTextBoxTemplate}"/>
+                            <Label Content="TOTAL" Grid.Row="3" FontFamily="{StaticResource PrimaryFont}" VerticalAlignment="Center"/>
+
+                            <StackPanel HorizontalAlignment="Right" Grid.Column="1" Grid.Row="3" Margin="5" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <!--Generate Report Button-->
+                                    <Button x:Name="btnReport" Style="{StaticResource PrimaryButtonStyle}" Grid.Column="1" ToolTip="Generate Report"
+                                            Margin="5 2" Height="40" Width="40" MinWidth="0" Click="btnReport_Click" IsEnabled="False">
+                                        <Button.Content>
+                                            <Image Style="{StaticResource imgGenerateReport}" Width="25" Height="25"/>
+                                        </Button.Content>
+                                    </Button>
+
+                                    <!--Delete Schedule Button-->
+                                    <Button x:Name="btnDelete" MinHeight="0" MinWidth="0" Style="{StaticResource PrimaryButtonStyle}" ToolTip="Delete Schedule"
+                                            Height="40" Width="40" Margin="5 2" IsEnabled="False" Click="btnDelete_Click" Grid.Column="0">
+                                        <Button.Content>
+                                            <Image Style="{StaticResource imgDelete}"/>
+                                        </Button.Content>
+                                    </Button>
+
+                                    <!--Total Cost-->
+                                    <Label x:Name="lblTotalAmount" Height="40" Width="100"  BorderBrush="Black" BorderThickness="1" Grid.Column="2" Margin="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+
+
+            <!--COLUMN 3 - Calendar Picker, Buttons-->
+            <StackPanel Grid.Column="2" Margin="5">
+
+                <!--Selected Date TextBlock-->
+                <Grid Margin="10 10 10 0">
+                    <TextBlock x:Name="txtSelectedDay" FontSize="20" FontWeight="Bold" Foreground="{StaticResource SecondaryTextColor}" HorizontalAlignment="Left" RenderTransformOrigin="0,1"/>
+                    <TextBlock x:Name="txtSelectedDate" FontSize="20" Foreground="{StaticResource SecondaryTextColor}" HorizontalAlignment="Right" RenderTransformOrigin="1,1"/>
+                </Grid>
+
+                <Separator Margin="0 10"/>
+                <!--Calendar: SAMPLE ONLY-->
+                <Calendar x:Name="calendar" Margin="0 10" SelectedDatesChanged="calendar_SelectedDatesChanged"/>
+
+                <!--<StackPanel  Grid.Row="1">
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock x:Name="txtRemarks" Height="130" Background="AntiqueWhite"/>
+                    </Border>
+                </StackPanel>-->
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                <!--Cancel Button-->
+                <Button x:Name="btnCancel" Content="Cancel" MinWidth="0" Width="70" 
+                        Style="{StaticResource SecondaryButtonStyle}" Margin="10" 
+                        Click="btnCancel_Click" IsEnabled="False"/>
+
+                <!--Edit Button-->
+                <Button x:Name="btnEditSchedule" Content="Edit" MinWidth="0" Width="70" 
+                        Style="{StaticResource PrimaryButtonStyle}" Margin="10" 
+                        Click="btnEditSchedule_Click" IsEnabled="False"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,67 @@
+﻿<Window x:Class="EdzerSchedulingSystem.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EdzerSchedulingSystem"
+        mc:Ignorable="d" FontFamily="{StaticResource PrimaryFont}" Foreground="{StaticResource PrimaryTextColor}"
+        Height="540" Width="350" Style="{StaticResource NoBorderWindow}"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded"
+        KeyDown="Window_KeyDown" GotFocus="Window_GotFocus">
+    <Grid>
+
+        <!--Background Image-->
+        <Image x:Name="imgBackground"
+               Source="/Assets/img/background-gradient.png" Stretch="UniformToFill"
+               MouseDown="imgBackground_MouseDown"/>
+
+
+        <!--Body-->
+        <Border x:Name="mainBorder" CornerRadius="10" BorderThickness="1" Opacity="0"
+                BorderBrush="#c2e6ff" Margin="15 80 15 15" Padding="0 100 0 0">
+
+            <Grid>
+
+                <!--Logo, Username, Password-->
+                <StackPanel>
+                    
+                    <!--Username-->
+                    <StackPanel MaxWidth="450" Margin="0 0 0 20">
+                        <TextBlock Text="USERNAME" FontSize="14" FontWeight="Bold" Margin="20 0 0 10"/>
+                        <TextBox x:Name="txtUsername" Margin="20 0" Style="{StaticResource LogInTextBoxTemplate}" KeyDown="txtUsername_KeyDown"
+                                 MaxLength="100"/>
+                        
+                    </StackPanel>
+    
+                    <!--Password-->
+                    <StackPanel MaxWidth="450">
+                        <TextBlock Text="PASSWORD" FontSize="14" FontWeight="Bold" Margin="20 0 0 10"/>
+                        <PasswordBox x:Name="pwdPassword" Margin="20 0" Style="{StaticResource PasswordBoxTemplate}" KeyDown="pwdPassword_KeyDown"
+                                     MaxLength="100"/>
+
+                        <TextBlock x:Name="txtWarning_CapsLock" Text="Caps Lock is On." HorizontalAlignment="Left" Margin="20"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!--Login, Cancel Buttons-->
+                <StackPanel VerticalAlignment="Bottom" Margin="20" MaxWidth="450">
+                    <!--Login Button-->
+                    <Button x:Name="btnLogin" Content="LOGIN" Click="btnLogin_Click"
+                            Style="{StaticResource PrimaryButtonStyle}" VerticalAlignment="Bottom"
+                            Margin="0 0 0 10"/>
+
+                    <!--Cancel Button-->
+                    <Button x:Name="btnCancel" Content="CANCEL"  Click="btnCancel_Click" Foreground="{StaticResource PrimaryTextColor}"
+                            Style="{StaticResource SecondaryButtonStyle}" VerticalAlignment="Bottom"/>
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <!--Logo-->
+        <Image x:Name="imgLogo" Style="{StaticResource Logov2}" Height="300" Width="300" Stretch="Uniform"/>
+
+
+    </Grid>
+</Window>

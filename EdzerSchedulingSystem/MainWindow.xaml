@@ -1,0 +1,180 @@
+﻿<Window x:Class="EdzerSchedulingSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EdzerSchedulingSystem"
+        xmlns:viewModels="clr-namespace:EdzerSchedulingSystem.ViewModels"
+        xmlns:views="clr-namespace:EdzerSchedulingSystem.Views"
+        xmlns:schedulesView="clr-namespace:EdzerSchedulingSystem.Views.SchedulesView"
+        mc:Ignorable="d"
+        Height="600" Width="1072" MinHeight="600" MinWidth="1072"
+        Title="Edzer Scheduling System" x:Name="mainWindow" Closing="mainWindow_Closing"
+        WindowStartupLocation="CenterScreen" FontFamily="{StaticResource PrimaryFont}">
+
+    <Window.Resources>
+        <!--<DataTemplate x:Name="dashboardTemplate" DataType="viewModels:DashboardViewModel">
+            <views:Dashboard DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="schedulesViewTemplate" DataType="viewModels:SchedulesViewModel">
+            <schedulesView:SchedulesView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="instrumentsViewTemplate" DataType="viewModels:InstrumentsViewModel">
+            <views:InstrumentsView DataContext="{Binding}"/>
+        </DataTemplate>-->
+    </Window.Resources>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <!--Content Window-->
+        <Grid Background="{StaticResource BackgroundColor}" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--Header-->
+            <Grid Grid.Row="0" Background="DarkCyan">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Title-->
+                <TextBlock x:Name="txtTabName" Style="{StaticResource TitleText}" VerticalAlignment="Bottom"
+                           Margin="20 10"/>
+
+                <!--Date/Time-->
+                <StackPanel Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="15 10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--TIMER-->
+                        <!--Day-->
+                        <TextBlock x:Name="txtDay" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                                   FontWeight="Bold" FontSize="40" Margin="5 0" Foreground="{StaticResource PrimaryTextColor}"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                        <!--Date-->
+                        <TextBlock x:Name="txtDate" Grid.Row="0" Grid.Column="1"
+                                   FontSize="16" Foreground="{StaticResource PrimaryTextColor}"
+                                   VerticalAlignment="Bottom" Margin="2 0"/>
+
+                        <!--Time-->
+                        <TextBlock x:Name="txtTime" Grid.Row="1" Grid.Column="1"
+                                   FontSize="16" Foreground="{StaticResource PrimaryTextColor}"
+                                   VerticalAlignment="Top" Margin="2 0"/>
+                    </Grid>
+                </StackPanel>
+                
+                <!--Buttons-->
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" 
+                            HorizontalAlignment="Right" Margin="5 5 15 0" Orientation="Horizontal">
+                    <Button x:Name="btnSettings" Content="Settings" Style="{StaticResource WhiteButton}"
+                            Foreground="{StaticResource PrimaryTextColor}" BorderThickness="0"
+                            FontSize="16" Margin="0 0 15 0" Click="btnSettings_Click"/>
+                    <!--About-->
+                    <Button x:Name="btnAbout" Content="About" Style="{StaticResource WhiteButton}"
+                            Foreground="{StaticResource PrimaryTextColor}" BorderThickness="0"
+                            FontSize="16" Margin="0 0 15 0"/>
+                    
+                    <!--Log Out Button-->
+                    <Button x:Name="btnLogout" Content="Log Out" Style="{StaticResource WhiteButton}"
+                            Foreground="{StaticResource PrimaryTextColor}" BorderThickness="0"
+                            FontSize="16" FontWeight="Bold" Click="btnLogout_Click"/>
+                </StackPanel>
+                
+            </Grid>
+            
+            <Border Grid.Row="1" Padding="5">
+                <ContentControl Content="{Binding}"/>
+            </Border>
+            
+        </Grid>
+
+        <!--Side Navigation Bar-->
+        <DockPanel x:Name="NavBar" MouseEnter="NavBar_MouseEnter" MouseLeave="NavBar_MouseLeave" Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.Column="0" Background="{StaticResource AccentColor}" Width="60">
+
+            <!--Logo & Upper Buttons-->
+            <StackPanel DockPanel.Dock="Top" Margin="0 20 0 0">
+
+                <!--Logo-->
+                <Image x:Name="imgLogo" Style="{StaticResource Logov2}" Height="50" Margin="0 25 0 45"/>
+
+                <!--Menu Buttons-->
+                <StackPanel>
+                    <!--Dashboard Button-->
+                    <Button x:Name="btnDashboard" Style="{StaticResource MenuButtonStyle}" Margin="0 2" Click="btnDashboard_Click">
+                        <Button.Content>
+                            <Grid Margin="10" Width="225">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Style="{StaticResource imgDashboard}" VerticalAlignment="Center" Grid.Column="0"/>
+                                <TextBlock FontFamily="{StaticResource PrimaryFont}" Text="Dashboard" VerticalAlignment="Center" Margin="15 0" Grid.Column="1"/>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    
+                    <!--Schedules Button-->
+                    <Button x:Name="btnSchedules" Style="{StaticResource MenuButtonStyle}" Margin="0 2" Click="btnSchedules_Click">
+                        <Button.Content>
+                            <Grid Margin="10" Width="225">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Style="{StaticResource imgSchedules}" VerticalAlignment="Center" Grid.Column="0"/>
+                                <TextBlock FontFamily="{StaticResource PrimaryFont}" Text="Schedules" VerticalAlignment="Center" Margin="15 0" Grid.Column="1"/>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+
+                    <!--Instruments Button-->
+                    <Button x:Name="btnInstruments" Style="{StaticResource MenuButtonStyle}" Margin="0 2" Click="btnInstruments_Click">
+                        <Button.Content>
+                            <Grid Margin="10" Width="225">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Style="{StaticResource imgInstruments}" VerticalAlignment="Center"  Grid.Column="0"/>
+                                <TextBlock FontFamily="{StaticResource PrimaryFont}" Text="Instruments" VerticalAlignment="Center" Grid.Column="1" Margin="15 0"/>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+
+                </StackPanel>
+
+            </StackPanel>
+
+            <!--Welcome Message with Manage Accounts Button-->
+            <StackPanel VerticalAlignment="Bottom" Margin="0 0 0 25" Orientation="Horizontal">
+                <Button x:Name="btnAccounts"
+                        Width="35" Height="35" Margin="12.5 0"
+                        VerticalAlignment="Center"
+                        Content="{StaticResource imgAccounts}"
+                        BorderThickness="0"
+                        Click="btnAccounts_Click"
+                        Style="{StaticResource WhiteButton}"/>
+
+                <TextBlock x:Name="txtWelcomeMessage" Foreground="{StaticResource PrimaryTextColor}"
+                           FontSize="20" TextAlignment="Center" VerticalAlignment="Center" Opacity="0" Margin="5 0"/>
+            </StackPanel>
+
+        </DockPanel>
+
+    </Grid>
+</Window>

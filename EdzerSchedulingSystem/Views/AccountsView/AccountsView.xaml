@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="EdzerSchedulingSystem.Views.AccountsView.AccountsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EdzerSchedulingSystem.Views.AccountsView"
+             mc:Ignorable="d" Style="{StaticResource UserControlTemplate}" d:DesignHeight="570" d:DesignWidth="1000">
+    
+    <Grid Background="{StaticResource BackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel LastChildFill="True" Margin="5 0" Grid.Row="0">
+
+            <!--Table-->
+            <Border BorderBrush="Black" BorderThickness="3" CornerRadius="3">
+                <ScrollViewer>
+                    <DataGrid x:Name="tblAccounts" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserSortColumns="False" SelectionMode="Single"
+                              SelectionChanged="tblAccounts_SelectionChanged" MouseUp="tblAccounts_MouseUp">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*"    Header="Account ID"        Binding="{Binding userID}"/>
+                            <DataGridTextColumn Width="*"    Header="Username"          Binding="{Binding username}"/>
+                            <DataGridTextColumn Width="*"    Header="Admin Privileges"  Binding="{Binding isAdmin}"/>
+                         </DataGrid.Columns>
+                        
+                        
+                    </DataGrid>
+                </ScrollViewer>
+            </Border>
+
+        </DockPanel>
+
+        <!--CRUD Buttons-->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+
+            <!--Delete Account Button-->
+            <Button x:Name="btnDeleteAccount" Style="{StaticResource SecondaryButtonStyle}"
+                    Content="Delete" HorizontalAlignment="Right" Margin="0 0 100 0" Foreground="{StaticResource SecondaryTextColor}" Click="btnDeleteAccount_Click"
+                    />
+
+            <!--Edit Account Button-->
+            <Button x:Name="btnChangePassword" Style="{StaticResource SecondaryButtonStyle}" Width="150"
+                    Content="Change Password" Margin="5 0" Foreground="{StaticResource SecondaryTextColor}"
+                    Click="btnChangePassword_Click"/>
+
+            <!--Add Account Button-->
+            <Button x:Name="btnAddAccount" Style="{StaticResource PrimaryButtonStyle}"
+                    Content="Add" Margin="5 0"
+                    Click="btnAddAccount_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
